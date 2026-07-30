@@ -9,6 +9,7 @@ const notFound = require("./middleware/notFound")
 const errorMiddleware = require("./middleware/errors-handler")
 // ROUTES
 const userRoutes = require("./routes/users")
+const postRoutes = require("./routes/post")
 // MIDDLEWARE
 app.use(cors())
 app.use(express.json())
@@ -21,6 +22,7 @@ app.get("/", (req,res)=>res.send("Hello from the server")
  
 
 app.use("/api/users", userRoutes)
+app.use("/api/post", postRoutes)
 
 
 
