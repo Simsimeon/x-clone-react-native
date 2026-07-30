@@ -4,6 +4,8 @@ const {StatusCodes}=require("http-status-codes");
 const Errors = require("../errors");
 const cloudinary =require("../config/cloundinary");
 const {getAuth} =require("@clerk/express");
+const Notification = require("../model/notification");
+const Comment = require("../model/comment")
 const getAllPost = async (req,res)=>{
 const allPost = await Post.find({})
 .sort("-createdAt")
