@@ -9,7 +9,7 @@ Router.get("/user/:username",getUserPost);
 
 Router.post("/create", authenticatedUserMiddleWare,upload.single("image"),createPost);
 Router.post("/:postId/like", authenticatedUserMiddleWare,likePost);
-Router.post("/delete/:postId",authenticatedUserMiddleWare, deletePost);
+Router.delete("/delete/:postId",authenticatedUserMiddleWare, deletePost);
 
   
 
