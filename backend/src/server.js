@@ -42,10 +42,12 @@ app.use(errorMiddleware)
 const start =async function (){
     try{
        await connectDB(ENV.MON_URI)
-     app.listen(ENV.PORT,()=>{
-        console.log(`server is listening at ${ENV.PORT}`);
-        
-     })
+       if(ENV.NODE_ENV !== "Production"){
+          app.listen(ENV.PORT,()=>{
+             console.log(`server is listening at ${ENV.PORT}`);
+             
+          })
+       }
     }catch(err){
        console.log(err);
        
@@ -53,3 +55,4 @@ const start =async function (){
 } 
 
 start()
+module.exports =app
