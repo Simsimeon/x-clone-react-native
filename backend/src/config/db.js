@@ -6,4 +6,4 @@ const connectDB =(ur)=>{
 }
 
 
-module.exports = connectDB
+module.exports = connectDB 
