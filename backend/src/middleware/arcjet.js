@@ -39,7 +39,7 @@ const arcjetMiddleware = async(req,res,next)=>{
     }
     next()
     }catch(err){
-      console.error("Arcjet middleware error",error);
+      console.error("Arcjet middleware error",err);
     // alow  request to continue if arcjet fails
       next()
       
