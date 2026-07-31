@@ -1,10 +1,10 @@
 const { StatusCodes } = require("http-status-codes");
-const aj = require("../config/arcjet");
+const {initArcjet} = require("../config/arcjet");
   
 
 const arcjetMiddleware = async(req,res,next)=>{
     try{
-     const  decision = await aj.protect(req,{
+     const  decision = await initArcjet.protect(req,{
         requested:1,
 })
   if(decision.isDenied()){
@@ -28,7 +28,7 @@ const arcjetMiddleware = async(req,res,next)=>{
      }
   }
 //   check for spoofed bots
-if(decision.results.
+ if(decision.results.
     some(
         (result)=> result.reason.isBot() && result.reason.isSpoofed())
     ){
