@@ -1,13 +1,30 @@
-import { Ionicons } from "@expo/vector-icons";
-import { Text, View } from "react-native";
-import "../constant/global.css";
-export default function App() {
+import { useAuth } from "@clerk/expo";
+import { useRouter } from "expo-router";
+import { Alert, Pressable, Text, View } from "react-native";
+
+export default function HomeScreen() {
+  const { signOut } = useAuth();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      router.replace("/(auth)");
+    } catch (err) {
+      console.error("Error signing out:", err);
+      Alert.alert(
+        "Sign Out Error",
+        "Could not complete sign out. Please try again.",
+      );
+    }
+  };
+
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-xl font-bold text-blue-500">
-        Welcome to NativeWind!
-      </Text>
-      <Ionicons name="logo-twitter" size={24} color="#1DA1F2" />
+    <View>
+      <Text>HomeScreen</Text>
+      <Pressable onPress={handleSignOut} className="mt-5 ">
+        <Text>Sign out now</Text>
+      </Pressable>
     </View>
   );
 }
