@@ -12,9 +12,5 @@ export default function AuthLayout() {
     return <Redirect href="/" />;
   }
 
-  return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="index" />
-    </Stack>
-  );
+  return <Stack screenOptions={{ headerShown: false }} />;
 }

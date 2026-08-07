@@ -1,11 +1,13 @@
 import { useSSO } from "@clerk/expo";
 import * as Linking from "expo-linking";
+import { useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import { useEffect, useState } from "react";
 import { Alert } from "react-native";
 WebBrowser.maybeCompleteAuthSession();
 const UseSocialAuth = () => {
   const { startSSOFlow } = useSSO();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -17,8 +19,8 @@ const UseSocialAuth = () => {
   }, []);
 
   const onPressAuth = async (strategy: "oauth_google" | "oauth_apple") => {
-    setIsLoading(true);
     try {
+      setIsLoading(true);
       const redirectUrl = Linking.createURL("/sso-callback");
       const { createdSessionId, setActive } = await startSSOFlow({
         strategy,
